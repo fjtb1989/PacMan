@@ -15,6 +15,8 @@ AFoodie::AFoodie()
 void AFoodie::BeginPlay()
 {
 	Super::BeginPlay();
+
+	int xx;
 	
 }
 
