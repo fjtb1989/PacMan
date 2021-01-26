@@ -2,6 +2,8 @@
 
 
 #include "Foodie.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 AFoodie::AFoodie()
@@ -24,6 +26,16 @@ void AFoodie::BeginPlay()
 void AFoodie::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+}
+
+void AFoodie::Consume()
+{
+
+	UGameplayStatics::PlaySound2D(this, ConsumptionSound);
+	FoodieEatenEnvent.Broadcast(FoodieType);
+
+	Destroy();
 
 }
 

@@ -6,6 +6,18 @@
 #include "GameFramework/Actor.h"
 #include "Foodie.generated.h"
 
+class USoundCue;
+
+
+UENUM(BlueprintType)
+enum class EFoodieType : uint8
+{
+	Regular,
+	PowerUp
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FFoodieEatenEvent, EFoodieType, FoodieType);
+
 UCLASS()
 class PACMAN_API AFoodie : public AActor
 {
@@ -23,4 +35,16 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void Consume();
+
+	UPROPERTY(EditAnywhere)
+		EFoodieType FoodieType = EFoodieType::Regular;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+		FFoodieEatenEvent FoodieEatenEnvent;
+
+private:
+
+	UPROPERTY(EditAnywhere)
+		USoundCue* ConsumptionSound;
 };

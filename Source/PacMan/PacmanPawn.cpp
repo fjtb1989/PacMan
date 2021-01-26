@@ -2,6 +2,7 @@
 
 
 #include "PacmanPawn.h"
+#include "Foodie.h"
 
 // Sets default values
 APacmanPawn::APacmanPawn()
@@ -62,5 +63,13 @@ void APacmanPawn::SetDirection(const FVector Direction)
 
 void APacmanPawn::OnOverlapBegin(AActor* PlayerActor, AActor* OtherActor)
 {
+
+	if (OtherActor->ActorHasTag("Foodie.Regular"))
+	{
+		Cast<AFoodie>(OtherActor)->Consume();
+
+
+	}
+
 }
 
